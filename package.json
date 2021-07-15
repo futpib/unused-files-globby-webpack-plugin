@@ -1,0 +1,75 @@
+{
+  "name": "unused-files-globby-webpack-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Glob all files that are not compiled by webpack under webpack's context",
+  "author": "futpib <futpib@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/futpib/unused-files-globby-webpack-plugin",
+  "keywords": [
+    "unused",
+    "redundancy",
+    "files",
+    "require",
+    "webpack",
+    "webpack-plugin"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "xo && nyc ava",
+    "prepare": "husky install"
+  },
+  "main": "./lib/index.js",
+  "dependencies": {
+    "deep-extend": "^0.6.0",
+    "globby": "^11.0.4",
+    "outdent": "^0.8.0",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "@ava/typescript": "^2.0.0",
+    "@types/deep-extend": "^0.4.31",
+    "ava": "^3.15.0",
+    "eslint-config-xo-overrides": "^1.5.0",
+    "husky": "^6.0.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.0.0",
+    "webpack": "^5.44.0",
+    "xo": "^0.38.2"
+  },
+  "engines": {
+    "node": ">= 12.2"
+  },
+  "xo": {
+    "extends": [
+      "eslint-config-xo-overrides"
+    ],
+    "ignore": "lib/*",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "new-cap": "off",
+      "@typescript-eslint/object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "@typescript-eslint/comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "@typescript-eslint/consistent-type-imports": "error"
+    }
+  },
+  "ava": {
+    "ignoredByWatcher": [
+      "**/*.fixtures/*.edited.*"
+    ],
+    "typescript": {
+      "rewritePaths": {
+        "src/": "lib/"
+      },
+      "compile": "tsc"
+    }
+  }
+}
