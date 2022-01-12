@@ -5,6 +5,7 @@ import deepExtend from 'deep-extend';
 import type { Compilation, Compiler, WebpackError } from 'webpack';
 
 function getFileDepsMap(compilation: Compilation) {
+	// eslint-disable-next-line unicorn/prefer-object-from-entries
 	const fileDepsBy = [ ...compilation.fileDependencies ].reduce<Record<string, boolean>>(
 		(acc, usedFilepath) => {
 			acc[usedFilepath] = true;
@@ -15,7 +16,7 @@ function getFileDepsMap(compilation: Compilation) {
 
 	const { assets } = compilation;
 	for (const assetRelpath of Object.keys(assets)) {
-		// @ts-expect-error
+		// @ts-expect-error 2339
 		const { existsAt } = assets[assetRelpath];
 		fileDepsBy[existsAt] = true;
 	}
